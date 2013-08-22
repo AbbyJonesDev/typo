@@ -9,6 +9,7 @@ Feature: Write Articles
 
   Scenario: Successfully write articles
     Given I am on the new article page
+    Then I should not see "Merge Articles"
     When I fill in "article_title" with "Foobar"
     And I fill in "article__body_and_extended_editor" with "Lorem Ipsum"
     And I press "Publish"

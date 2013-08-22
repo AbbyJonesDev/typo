@@ -19,6 +19,7 @@
 #
 
 
+
 require 'uri'
 require 'cgi'
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
@@ -54,6 +55,32 @@ And /^I am logged into the admin panel$/ do
     assert page.has_content?('Login successful')
   end
 end
+
+Given /the following articles exist/ do |articles_table|
+  # Article.create(:allow_comments => true, :allow_pings => true, :author => "Mr Typo", :body => "Welcome to Typo. This is your first article. Edit or delete it, then start blogging!", :guid => "1bf3e2ca-ed7b-4562-8a4a-8ce8438822c8", :id => 1, :permalink => "hello-world", :post_type => "read", :published => true, :published_at => "2012-06-09 21:51:55 UTC", :settings => {"password"=>""}, :state => "published", :text_filter_id => 5, :title => "Hello World!", :type => "Article", :user_id => 1)
+
+  articles_table.hashes.each do |article|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that article to the database here.
+    Article.create(article)
+  end
+end
+
+Given /the following users exist/ do |users_table|
+  users_table.hashes.each do |user|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that article to the database here.
+    User.create(user)
+  end
+end
+
+# And /the following comments exist/ do |comments_table|
+#   comments_table.hashes.each do |comment, article|
+#     art = Article.find_by_id(article)
+#     art.add_comment(comment)
+#   end
+# end
+
 
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|

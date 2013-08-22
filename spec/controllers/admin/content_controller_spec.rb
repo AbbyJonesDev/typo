@@ -544,6 +544,13 @@ describe Admin::ContentController do
         Article.should_not be_exists({:id => draft.id})
         Article.should_not be_exists({:id => draft_2.id})
       end
+
+      it 'should merge two articles' do
+        article1 = @article
+        article2 = Factory(:article, :title => "Article 2", body: "This is article 2", id: '2')
+        Content.should_receive(merge_with(id: "2"))
+        post :merge_with, "id" => article1.id 
+      end      
     end
 
     describe 'resource_add action' do

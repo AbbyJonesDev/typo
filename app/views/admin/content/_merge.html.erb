@@ -1,0 +1,6 @@
+<h4> Merge Articles </h4>
+  <%= form_tag controller: 'content', method: "merge", action: 'post' do -%>
+     Article ID
+     <%= text_field_tag('merge_with') %>
+     <%= submit_tag("Merge") %>
+  <% end %>
