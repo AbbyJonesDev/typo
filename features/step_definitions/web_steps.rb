@@ -56,9 +56,20 @@ And /^I am logged into the admin panel$/ do
   end
 end
 
-Given /the following articles exist/ do |articles_table|
-  # Article.create(:allow_comments => true, :allow_pings => true, :author => "Mr Typo", :body => "Welcome to Typo. This is your first article. Edit or delete it, then start blogging!", :guid => "1bf3e2ca-ed7b-4562-8a4a-8ce8438822c8", :id => 1, :permalink => "hello-world", :post_type => "read", :published => true, :published_at => "2012-06-09 21:51:55 UTC", :settings => {"password"=>""}, :state => "published", :text_filter_id => 5, :title => "Hello World!", :type => "Article", :user_id => 1)
+And /^I am logged in as "(.*)"$/ do |user|
+  user = User.find_by_name(user)
+  visit '/accounts/login'
+  fill_in 'user_login', :with => user
+  fill_in 'user_password', :with => '2'
+  click_button 'Login'
+  # if page.respond_to? :should
+  #   page.should have_content("Login successful")
+  # else
+  #   assert page.has_content('Login successful')
+  # end
+end
 
+Given /the following articles exist/ do |articles_table|
   articles_table.hashes.each do |article|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that article to the database here.

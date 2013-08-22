@@ -1,6 +1,6 @@
 <h4> Merge Articles </h4>
-  <%= form_tag controller: 'content', method: "merge", action: 'post' do -%>
-     Article ID
-     <%= text_field_tag('merge_with') %>
+  <%= form_tag controller: 'content', action: "merge_articles", :id => @article.id do -%>
+     <%= label_tag ("Article ID") %>
+     <%= text_field_tag(:merge_with) %>
      <%= submit_tag("Merge") %>
   <% end %>

@@ -53,6 +53,20 @@ class Admin::ContentController < Admin::BaseController
     redirect_to :action => 'index'
   end
 
+  def merge_articles
+    #verify that article exists and verify that articles are not the same
+      @article1 = Article.find(params[:id])
+      @article2 = Article.find(params[:merge_with])  
+      # if @article1 == nil || @article2 == nil
+        # flash[:notice] = "Article does not exist"
+        # redirect_to edit_admin_content_path
+      # end
+      #Verify that user is admin
+      @article1.merge(@article2)
+      redirect_to :action => 'index'
+  end
+
+
   def insert_editor
     editor = 'visual'
     editor = 'simple' if params[:editor].to_s == 'simple'
@@ -242,7 +256,4 @@ class Admin::ContentController < Admin::BaseController
     @resources = Resource.by_created_at
   end
 
-  def merge_with
-
-  end
 end

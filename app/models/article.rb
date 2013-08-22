@@ -71,6 +71,14 @@ class Article < Content
     end
   end
 
+  def merge(article2)
+    self.body += article2.body
+    self.comments += article2.comments
+    @article2 = Article.find(@article2.id)
+    @article2.destroy
+    self.save!
+  end
+
   def set_permalink
     return if self.state == 'draft'
     self.permalink = self.title.to_permalink if self.permalink.nil? or self.permalink.empty?
@@ -93,7 +101,7 @@ class Article < Content
                                :published_at=, :just_published?])
 
   include Article::States
-
+ 
   class << self
     def last_draft(article_id)
       article = Article.find(article_id)

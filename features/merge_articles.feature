@@ -31,7 +31,9 @@ Feature: Merge Articles
     And I should see "Dickens"
     And I should not see "Poe"
 
-  Scenario: Non-admin user should not see "Merge Articles"
+  Scenario: Non-admin user should not be able to merge articles
+    Given I am logged in as "ridley"
+    Then I should not see "Merge Articles"
 
 
 

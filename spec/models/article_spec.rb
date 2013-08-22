@@ -632,3 +632,12 @@ describe Article do
   end
 end
 
+      # it 'should merge two articles' do
+      #   article1 = @article
+      #   article2 = Factory(:article, :title => "Article 2", body: "This is article 2")
+      #   lambda do
+      #     post :merge, 'id' => params[:merge_with]
+      #   end.should == (article1.body + article2.body) &&  
+      # end      
+
+
