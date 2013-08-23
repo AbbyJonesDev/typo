@@ -74,7 +74,7 @@ class Article < Content
   def merge(article2)
     self.body += article2.body
     self.comments += article2.comments
-    @article2 = Article.find(@article2.id)
+    @article2 = Article.find(article2.id)
     @article2.destroy
     self.save!
   end

@@ -55,6 +55,11 @@ class Admin::ContentController < Admin::BaseController
 
   def merge_articles
     #verify that article exists and verify that articles are not the same
+      debugger
+      unless session[:user_id] = '1'
+        flash[:error] = _("Error, you are not allowed to perform this action")
+        return(redirect_to :action => 'edit')
+      end
       @article1 = Article.find(params[:id])
       @article2 = Article.find(params[:merge_with])  
       # if @article1 == nil || @article2 == nil
