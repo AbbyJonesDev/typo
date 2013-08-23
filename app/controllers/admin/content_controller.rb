@@ -28,8 +28,10 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def edit
+    #debugger
     @article = Article.find(params[:id])
     @orig_action = :edit
+    @admin = true if session[:user_id] == 1
     unless @article.access_by? current_user
       redirect_to :action => 'index'
       flash[:error] = _("Error, you are not allowed to perform this action")
@@ -55,7 +57,7 @@ class Admin::ContentController < Admin::BaseController
 
   def merge_articles
     #verify that article exists and verify that articles are not the same
-      # debugger
+      #debugger
       unless session[:user_id] = '1'
         flash[:error] = _("Error, you are not allowed to perform this action")
         return(redirect_to :action => 'edit')
