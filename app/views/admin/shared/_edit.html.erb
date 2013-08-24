@@ -4,3 +4,7 @@
   <%= render :partial => "form" %>
 
 <% end %>
+
+<% if @orig_action and @admin -%>
+	<%= render 'admin/content/merge' %>
+<% end %>
