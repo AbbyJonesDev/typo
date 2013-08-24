@@ -6,6 +6,10 @@ Feature: Create and Edit Categories
 Background:
 	Given the blog is set up
 	And I am logged into the admin panel
+	And the following categories exist:
+	|	name	|
+	|	Fruit	|
+	|	Sports	|
 
 Scenario: Create categories
 	When I follow "Categories"
@@ -21,9 +25,9 @@ Scenario: Create categories
 
 Scenario: Edit Categories
 	When I follow "Categories"
-	And I am on the edit page for category "Pets"
-	And I fill in "Name" with "Animals"
+	And I am on the edit page for category "Fruit"
+	And I fill in "Name" with "Food"
 	And I press "Save"
 	Then I should see "Categories"
-	And I should see "Animals"
-	And I should not see "Pets"
+	And I should see "Food"
+	And I should not see "Fruit"
