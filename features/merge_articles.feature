@@ -20,7 +20,7 @@ Feature: Merge Articles
 
   Scenario: Merging articles from article's edit page
     Given I am logged into the admin panel
-    And I am on the edit page for "t1"
+    And I am on the edit page for article "t1"
     Then I should see "Merge Articles"
     When I fill in the following:
     | merge_with | 2 |

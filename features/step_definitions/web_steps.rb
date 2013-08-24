@@ -85,13 +85,6 @@ Given /the following users exist/ do |users_table|
   end
 end
 
-# And /the following comments exist/ do |comments_table|
-#   comments_table.hashes.each do |comment, article|
-#     art = Article.find_by_id(article)
-#     art.add_comment(comment)
-#   end
-# end
-
 
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
@@ -189,6 +182,7 @@ Then /^(?:|I )should not see "([^"]*)"$/ do |text|
     assert page.has_no_content?(text)
   end
 end
+
 
 Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)

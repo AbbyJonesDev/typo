@@ -26,8 +26,11 @@ module NavigationHelpers
   # when /^the edit page for "(.*)"$/
       # '/admin/content/edit/Content.find_by_title($1).id'
 
-  when /^the edit page for "(.*)"$/
+  when /^the edit page for article "(.*)"$/
     admin_content_path + '/edit/' + Article.find_by_title($1).id.to_s
+
+  when /^the edit page for category "(.*)"$/
+    admin_categories_path + '/edit/' + Category.find_by_name($1).id.to_s
 
   when /^the Manage Articles page$/
       '/admin/content'
